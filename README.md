@@ -1,91 +1,66 @@
 # Bam2Bigwig_Rshiny
 
+## DESCRIPTION
+
+
 Allows the transformation of a Bam file into a Bigwig file. The app is based on "bamcoverage" of the Deeptools tool.
+At the top of the pages a link to the bamcoverage tutorial is available.
+Options are available to the user to allow adaptation of the output file to his needs. 
+App is divided into two parts giving access to a simple conversion (unstranded) or specific to each strand (stranded).
+On the stranded page, two files are downloadable, one per strand, and, on the unstranded page, only one corresponding to the complete bigwig.
+Note that the app will use half of the threads (core) of your PC.
+In addition, it is not possible to launch several conversions simultaneously or to load several BAM files,
+conversions must be done one by one.
 
-## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## PRESENTATION OF THE USER INTERFACE (UI)
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### Options
 
-## Add your files
+At the top of pages, you can find all the converting options : 
 
-- [ ] [Create](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+0 - Only for the Stranded page, give the choice of stranded methods / Library type 
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/peries.mathias/bam2bigwig_rshiny.git
-git branch -M main
-git push -uf origin main
-```
+1 - Here you can choose one normalization strategy (RPKM, CPM, BPM or RPGC). It is also possible to define a
+precise normalization factor.
+If you dont want to use one of this normalization strategy, you can give a specific factor, the calculation carried out will be :
+bigwig file * (factor / number of read)
 
-## Integrate with your tools
+note : 
+RPKM = Reads Per Kilobase per Million mapped reads; 
+CPM = Counts Per Million mapped reads, same as CPM in RNA-seq; 
+BPM = Bins Per Million mapped reads, same as TPM in RNA-seq; 
+RPGC = reads per genomic content (1x normalization)
 
-- [ ] [Set up project integrations](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://docs.gitlab.com/ee/user/project/integrations/)
+2 - ignoreForNormalization option of bamcoverage : A list of space-delimited chromosome names containing those chromosomes 
+that should be excluded for computing the normalization. This is useful when considering samples with unequal 
+coverage across chromosomes, like male samples.
 
-## Collaborate with your team
+3 - Exact scaling option of bamcoverage : Instead of computing scaling factors based on a sampling of the reads, 
+process all of the reads to determine the exact number that will be used in the output. 
+This requires significantly more time to compute, but will produce more accurate scaling factors in cases where 
+alignments that are being filtered are rare and lumped together. In other words, this is only needed when 
+region-based sampling is expected to produce incorrect results.
 
-- [ ] [Invite team members and collaborators](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Automatically merge when pipeline succeeds](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+4 - binSize option of bamcoverage : Size of the bins, in bases, for the output of the bigwig/bedgraph file.
 
-## Test and Deploy
+5 - region option of bamcoverage : Region of the genome to limit the operation to - this is useful when testing parameters to reduce the computing time. 
+The format is chr:start:end, for example –region chr10 or –region chr10:456700:891000.
 
-Use the built-in continuous integration in GitLab.
+6 - skipNonCoveredRegions of bamcoverage : This parameter determines if non-covered regions (regions without overlapping reads) 
+in a BAM file should be skipped. The default is to treat those regions as having a value of zero. 
+The decision to skip non-covered regions depends on the interpretation of the data. 
+Non-covered regions may represent, for example, repetitive regions that should be skipped.
 
-- [ ] [Get started with GitLab CI/CD](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://docs.gitlab.com/ee/user/clusters/agent/)
+## UPLOAD/CONVERSION/DOWNLOAD
 
-***
+At the bottom of the page you can find the conversion pannel : 
 
-# Editing this README
+7 - You can upload your BAM file here, wait the message "Upload complete" to continue.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://gitlab.com/-/experiment/new_project_readme_content:1494a7752014c5083cdedce4bba3a98d?https://www.makeareadme.com/) for this template.
+8 - You can give a specific name at your bigwig file(s). If you used the stranded page, the words "reverse" and "forward
+are automaticaly added to your file name. 
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+9 - This is the button of conversion "BAM TO BIGWIG". Make sure you have chosen options you need before clicking on them. 
 
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
-
+10/11 - Download button. Only one for the Unstranded page and two for stranded (one by strand). 
