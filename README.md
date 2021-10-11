@@ -52,7 +52,7 @@ in a BAM file should be skipped. The default is to treat those regions as having
 The decision to skip non-covered regions depends on the interpretation of the data. 
 Non-covered regions may represent, for example, repetitive regions that should be skipped.
 
-## UPLOAD/CONVERSION/DOWNLOAD
+### UPLOAD/CONVERSION/DOWNLOAD
 
 At the bottom of the page you can find the conversion pannel : 
 
