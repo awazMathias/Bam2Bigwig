@@ -15,10 +15,15 @@ conversions must be done one by one.
 ## SOFTWARE AND PACKAGES
 
 R version 4 and packages : 
+
     - shiny
+
     - shinydashboard
+
     - rtracklayer
+
     - BiocManager
+    
 
 For install in R4: 
 
