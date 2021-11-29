@@ -86,3 +86,7 @@ are automaticaly added to your file name.
 9 - This is the button of conversion "BAM TO BIGWIG". Make sure you have chosen options you need before clicking on them. 
 
 10/11 - Download button. Only one for the Unstranded page and two for stranded (one by strand). 
+
+## ACKNOWLEDGEMENT
+
+- **deepTools2: a next generation web server for deep-sequencing data analysis :** _"Fidel Ramírez, Devon P Ryan, Björn Grüning, Vivek Bhardwaj, Fabian Kilpert, Andreas S Richter, Steffen Heyne, Friederike Dündar, Thomas Manke, deepTools2: a next generation web server for deep-sequencing data analysis, Nucleic Acids Research, Volume 44, Issue W1, 8 July 2016, Pages W160–W165, https://doi.org/10.1093/nar/gkw257"_
