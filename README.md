@@ -12,6 +12,23 @@ Note that the app will use half of the threads (core) of your PC.
 In addition, it is not possible to launch several conversions simultaneously or to load several BAM files,
 conversions must be done one by one.
 
+## SOFTWARE AND PACKAGES
+
+R version 4 and packages : 
+    - shiny
+    - shinydashboard
+    - rtracklayer
+    - BiocManager
+
+For install in R4: 
+
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("rtracklayer")
+
+install.packages(c("shiny", "shinydashboard"))
+```
 
 ## PRESENTATION OF THE USER INTERFACE (UI)
 
