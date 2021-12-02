@@ -23,6 +23,8 @@ R version 4 and packages :
     - rtracklayer
 
     - BiocManager
+
+    - Parallel
     
 
 For install in R4: 
@@ -32,7 +34,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install("rtracklayer")
 
-install.packages(c("shiny", "shinydashboard"))
+install.packages(c("shiny", "shinydashboard", "parallel"))
 ```
 
 ## PRESENTATION OF THE USER INTERFACE (UI)
