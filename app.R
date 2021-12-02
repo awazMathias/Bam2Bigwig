@@ -4,6 +4,7 @@
 library(shiny)
 library(shinydashboard)
 library(rtracklayer)
+library(parallel)
 
 ui <- dashboardPage(
   dashboardHeader(title = "BAM to BigWig"),
