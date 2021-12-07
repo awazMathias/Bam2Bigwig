@@ -92,3 +92,5 @@ are automaticaly added to your file name.
 ## ACKNOWLEDGEMENT
 
 - **deepTools2: a next generation web server for deep-sequencing data analysis :** _"Fidel Ramírez, Devon P Ryan, Björn Grüning, Vivek Bhardwaj, Fabian Kilpert, Andreas S Richter, Steffen Heyne, Friederike Dündar, Thomas Manke, deepTools2: a next generation web server for deep-sequencing data analysis, Nucleic Acids Research, Volume 44, Issue W1, 8 July 2016, Pages W160–W165, https://doi.org/10.1093/nar/gkw257"_
+
+- **Samtools : a suite of programs for interacting with high-throughput sequencing data** _ "Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H, Twelve years of SAMtools and BCFtools, GigaScience (2021) 10(2) giab008 [33590861]"_
